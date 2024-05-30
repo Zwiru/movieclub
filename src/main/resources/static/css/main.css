@@ -1,0 +1,139 @@
+* {
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+.site {
+    background-color: hsl(0, 0%, 26%);
+}
+body {
+    /*font-family: 'Roboto', sans-serif;*/
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*min-height: 100vh;*/
+    /*align-items: center;*/
+}
+
+/*.container {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    !*min-height: 100vh;*!*/
+/*    !*background-color: hsl(0, 0%, 26%);*!*/
+/*}*/
+
+.nav-items,
+.logo,
+.brand-name,
+#toggle-icon {
+    color: hsl(45, 100%, 51%);
+}
+
+.nav-items:hover,
+.logo:hover,
+.brand-name:hover,
+#toggle-icon:hover {
+    color: hsl(45, 50%, 51%);
+}
+
+.jumbotron {
+    background-image: url("../img/pobrane.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.jumbotron-header,
+.jumbotron-description {
+    text-shadow: 0 0 3px #000000, 0 0 5px #000000;
+}
+
+.main-content {
+    flex: 1;
+}
+
+a,
+.movie-title,
+.movie-summary a,
+.genre a {
+    text-decoration: none;
+    color: hsl(45, 100%, 51%);
+}
+
+a:hover,
+.movie-title:hover,
+.movie-summary a:hover,
+.genre a:hover{
+    color: hsl(45, 50%, 51%);
+}
+
+.movie-list-item,
+.trailer,
+.desc,
+.rating,
+.genre {
+    border: 1px #6d6d6d solid;
+}
+
+.movie-list-item-poster {
+    max-width: 200px;
+}
+
+.footer-text {
+    padding: 8px;
+    text-align: center;
+    color: hsl(45, 100%, 51%);
+}
+
+.movie-rating-button {
+    background-color: hsl(45, 100%, 51%);
+    border: 0;
+    padding: 4px;
+    font-size: 1.2rem;
+    border-radius: 4px;
+    opacity: 0.8;
+    width: 35px;
+}
+
+.movie-rating-button:hover {
+    opacity: 1;
+}
+
+.movie-summary-title,
+.movie-summary-original-title,
+.movie-summary-item {
+    margin-bottom: 5px;
+}
+
+.error-header,
+.error-icon {
+    font-size: 3rem;
+    margin: 16px 0;
+}
+
+.notification {
+    background-color: #ffc107;
+}
+
+.login-form a,
+.registration-form a {
+    color: hsl(45, 100%, 51%);
+    text-decoration: none;
+}
+
+.login-form a:hover,
+.registration-form a:hover {
+    color: hsl(45, 50%, 51%);
+}
+
+.login-form button,
+.registration-form button {
+    background-color: hsl(45, 100%, 51%);
+}
+
+.login-form button:hover,
+.registration-form button:hover {
+    background-color: hsl(45, 50%, 51%);
+}
+
+

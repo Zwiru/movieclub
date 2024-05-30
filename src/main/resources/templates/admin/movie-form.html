@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pl"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title th:text="${movie.title == null ? 'Dodaj nowy film' : 'Edytuj film'}">Dodaj nowy film</title>
+</head>
+<body class="site d-flex flex-column min-vh-100">
+<main class="container mt-5" layout:fragment="content">
+
+
+
+    <form method="post" action="#" th:action="@{/admin/add-movie}" th:object="${movie}" enctype="multipart/form-data" class="d-flex flex-column align-items-center">
+        <div class="text-center mb-5">
+            <h2 th:text="${movie.title == null ? 'Dodaj nowy film' : 'Edytuj film'}"></h2>
+        </div>
+
+        <div class="mb-3 w-50">
+            <label for="title" class="form-label">Tytuł</label>
+            <input type="text" class="form-control" id="title" placeholder="Przykładowy tytuł" th:field="*{title}">
+        </div>
+        <div class="mb-3 w-50">
+            <label for="originalTitle" class="form-label">Tytuł oryginalny</label>
+            <input type="text" class="form-control" id="originalTitle" placeholder="Example title" th:field="*{originalTitle}">
+        </div>
+        <div class="mb-3 w-50">
+            <label for="releaseYear" class="form-label">Rok premiery</label>
+            <input type="number" class="form-control" id="releaseYear" placeholder="2019" th:field="*{releaseYear}">
+        </div>
+        <div class="mb-3 w-50" >
+            <select id="genre" th:field="*{genre}" class="form-select" aria-label="Wybierz gatunek filmu" required>
+                <option value="" hidden>Wybierz gatunek</option>
+                <option class="text-black" th:each="genre : ${genres}" th:value="${genre.name}" th:text="${genre.name}"></option>
+            </select>
+        </div>
+        <div class="mb-3 w-50">
+            <label for="promoted" class="form-check-label">Promowanie na stronie głównej?</label><br>
+            <input type="checkbox" class="form-check-input" id="promoted" th:field="*{promoted}">
+        </div>
+        <div class="mb-3 w-50">
+            <label for="poster" class="form-label">Plakat</label>
+            <input type="file" class="form-control form-control-sm" id="poster" th:field="*{poster}" accept="image/png, image/jpeg">
+        </div>
+        <div class="mb-3 w-50">
+            <label for="trailerId" class="form-label">Identyfikator trailera Youtube</label>
+            <input type="text" class="form-control" id="trailerId" placeholder="abcdefgh" th:field="*{youtubeTrailerId}">
+        </div>
+        <div class="mb-3 w-50">
+            <label for="shortDescription" class="form-label">Krótki opis - max 200 znaków</label>
+            <textarea type="text" class="form-control" id="shortDescription" rows="5" th:field="*{shortDescription}"></textarea>
+        </div>
+        <div class="mb-3 w-50">
+            <label for="description" class="form-label">Pełny opis</label>
+            <textarea type="text" class="form-control" id="description" rows="10" th:field="*{description}"></textarea>
+        </div>
+        <div class="mb-5 mt-2">
+            <button th:if="${movie.title == null}" type="submit" class="btn btn-success">Dodaj</button>
+            <button th:if="${movie.title != null}" type="submit" class="btn btn-success">Zapisz</button>
+            <button th:if="${movie.title != null}" type="submit" class="btn btn-danger">Usuń</button>
+        </div>
+    </form>
+</main>
+</body>
+</html>

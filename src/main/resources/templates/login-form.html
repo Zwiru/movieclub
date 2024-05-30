@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pl"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Zaloguj się - MovieClub</title>
+</head>
+<body class="site d-flex flex-column min-vh-100">
+<main class="container mt-5" layout:fragment="content">
+    <h2 class="text-center mb-4">Zaloguj się</h2>
+    <form action="" th:action="@{/login}" method="post" class="d-flex flex-column align-items-center login-form">
+        <p th:if="${param.error}"
+           th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"
+           class="text-danger">
+            Błąd logowania.
+        </p>
+        <p th:if="${param.logout}"
+           class="text-success">
+            Zostałeś wylogowany, możesz zalogować się ponownie.
+        </p>
+        <div class="form-outline mb-4">
+            <label class="form-label" for="username">Adres email</label>
+            <input type="email" id="username" name="username" class="form-control" placeholder="nazwa użytkownika"/>
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label" for="password">Hasło</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="hasło"/>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block mb-4 text-dark">Zaloguj się</button>
+        <div class="text-center">
+            <p>Nie masz jeszcze konta? <a href="#" th:href="@{/register}" class="">Zarejestruj się</a></p>
+        </div>
+    </form>
+
+</main>
+</body>
+</html>

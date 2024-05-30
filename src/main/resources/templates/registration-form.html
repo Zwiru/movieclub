@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pl"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Zarejestruj się - MovieClub</title>
+</head>
+<body class="site d-flex flex-column min-vh-100">
+<main class="container mt-5" layout:fragment="content">
+    <h2 class="text-center mb-4">Zarejestruj się</h2>
+    <div th:if="${param.success}">
+        <div class="alert alert-info"><span style="color: white">Register is sucessful, check your e-mail adress.</span></div>
+    </div>
+    <form action="#" th:action="@{/register}" method="post" th:object="${user}"
+          class="d-flex flex-column align-items-center registration-form">
+        <div class="form-outline mb-4">
+            <label class="form-label" for="username">Adres email</label>
+            <input type="email" id="username" th:field="*{email}" class="form-control" placeholder="nazwa użytkownika"/>
+            <label for="username" th:errors="*{email}" class="text-danger ">Błędy związane z imieniem</label>
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label" for="password">Hasło</label>
+            <input type="password" id="password" th:field="*{password}" class="form-control" placeholder="hasło"/>
+            <label for="password" th:errors="*{password}" class="text-danger ">Błędy związane z imieniem</label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block mb-4 text-dark">Zarejestruj się</button>
+        <div class="text-center">
+            <p>Masz już konto? <a href="#" th:href="@{/login}">Zaloguj się</a></p>
+        </div>
+    </form>
+</main>
+</body>
+</html>
