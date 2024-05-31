@@ -1,16 +1,17 @@
 package pl.pkasiewicz.movieclub.web.admin;
 
-import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.pkasiewicz.movieclub.domain.genre.GenreService;
 import pl.pkasiewicz.movieclub.domain.genre.dto.GenreDto;
 import pl.pkasiewicz.movieclub.domain.movie.MovieService;
-import org.springframework.ui.Model;
 import pl.pkasiewicz.movieclub.domain.movie.dto.MovieDto;
 import pl.pkasiewicz.movieclub.domain.movie.dto.MovieSaveDto;
 
@@ -40,7 +41,7 @@ class MovieManagementController {
         movieService.addMovie(movie);
         redirectAttributes.addFlashAttribute(
                 AdminController.NOTIFICATION_ATTRIBUTE,
-                "Film %s został zapisany".formatted(movie.getTitle())
+                "Film %s został dodany".formatted(movie.getTitle())
         );
         return "redirect:/admin";
     }
@@ -60,6 +61,17 @@ class MovieManagementController {
         redirectAttributes.addFlashAttribute(
                 AdminController.NOTIFICATION_ATTRIBUTE,
                 "Film %s został zapisany".formatted(movie.getTitle())
+        );
+        return "redirect:/admin";
+    }
+
+    @GetMapping ("/admin/delete-movie/{id}")
+    public String deleteMovie(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+        MovieDto movie = movieService.findMovieById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        movieService.deleteMovie(id);
+        redirectAttributes.addFlashAttribute(
+                AdminController.NOTIFICATION_ATTRIBUTE,
+                "Film %s został usunięty".formatted(movie.getTitle())
         );
         return "redirect:/admin";
     }

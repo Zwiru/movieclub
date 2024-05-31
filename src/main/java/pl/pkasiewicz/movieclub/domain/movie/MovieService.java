@@ -16,15 +16,13 @@ public class MovieService {
     private final MovieRepository movieRepository;
     private final FileStorageService fileStorageService;
     private final GenreRepository genreRepository;
-    private final MovieDtoMapper movieDtoMapper;
 
     public MovieService(MovieRepository movieRepository,
                         FileStorageService fileStorageService,
-                        GenreRepository genreRepository, MovieDtoMapper movieDtoMapper) {
+                        GenreRepository genreRepository) {
         this.movieRepository = movieRepository;
         this.fileStorageService = fileStorageService;
         this.genreRepository = genreRepository;
-        this.movieDtoMapper = movieDtoMapper;
     }
 
     public List<MovieDto> getAllPromotedMovies() {
@@ -89,5 +87,9 @@ public class MovieService {
             movie.setPoster(poster);
         }
         movieRepository.save(movie);
+    }
+
+    public void deleteMovie(Long id) {
+        movieRepository.deleteById(id);
     }
 }
