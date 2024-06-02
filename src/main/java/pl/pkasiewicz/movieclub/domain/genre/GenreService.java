@@ -19,6 +19,10 @@ public class GenreService {
                 .map(GenreDtoMapper::toDto);
     }
 
+    public Optional<GenreDto> findGenreById(Long id) {
+        return genreRepository.findById(id).map(GenreDtoMapper::toDto);
+    }
+
     public List<GenreDto> findAllGenres() {
         return genreRepository.findAll().stream()
                 .map(GenreDtoMapper::toDto)
@@ -29,5 +33,17 @@ public class GenreService {
         genreToSave.setName(genre.getName());
         genreToSave.setDescription(genre.getDescription());
         genreRepository.save(genreToSave);
+    }
+
+    public void updateGenre(Long id, GenreDto genreToUpdate) {
+        Genre genre = new Genre();
+        genre.setId(id);
+        genre.setName(genreToUpdate.getName());
+        genre.setDescription(genreToUpdate.getDescription());
+        genreRepository.save(genre);
+    }
+
+    public void deleteGenre(Long id) {
+        genreRepository.deleteById(id);
     }
 }

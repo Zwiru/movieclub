@@ -2,29 +2,34 @@
 <html lang="pl"
       xmlns:th="https://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       layout:decorate="~{layout}">
 <head>
-  <title>Gatunki filmowe - MovieClub</title>
+    <title>Gatunki filmowe - MovieClub</title>
 </head>
 <body class="site d-flex flex-column min-vh-100">
 <main class="container mt-5 mb-3" layout:fragment="content">
 
-  <div class="text-center mb-5">
-    <h2>Gatunki filmowe</h2>
-    <p>Poniżej znajdziesz listę gatunków filmowych w naszym katalogu. Wybierz coś dla siebie.</p>
-  </div>
+    <div class="text-center mb-5">
+        <h2>Gatunki filmowe</h2>
+        <p>Poniżej znajdziesz listę gatunków filmowych w naszym katalogu. Wybierz coś dla siebie.</p>
+    </div>
 
-  <div>
-    <ul class="list-unstyled d-flex flex-column">
-      <li class="col genre pt-2 pb-1" th:each="genre : ${genres}">
-        <h4 class="text-center">
-          <a href="#"
-             th:href="@{|/genre/${genre.name}|}"
-             th:text="${genre.name}">Fantasy</a>
-        </h4>
-      </li>
-    </ul>
-  </div>
+    <div>
+        <ul class="list-unstyled d-flex flex-column">
+            <li class="col genre pt-2 pb-1" th:each="genre : ${genres}">
+                <h4 class="text-center">
+                    <a href="#"
+                       th:href="@{|/genre/${genre.name}|}"
+                       th:text="${genre.name}">Fantasy</a>
+                </h4>
+                <div class="d-flex justify-content-center">
+                    <a class="btn btn-dark" href="#" th:href="@{|/admin/edit-genre/${genre.id}|}"
+                       sec:authorize="hasAnyRole('ADMIN', 'EDITOR')">Edytuj</a>
+                </div>
+            </li>
+        </ul>
+    </div>
 
 </main>
 </body>

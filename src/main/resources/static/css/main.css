@@ -55,7 +55,9 @@ body {
 a,
 .movie-title,
 .movie-summary a,
-.genre a {
+.genre a,
+.edit-movie-button a,
+.movie-list-item-rating i {
     text-decoration: none;
     color: hsl(45, 100%, 51%);
 }
@@ -63,8 +65,10 @@ a,
 a:hover,
 .movie-title:hover,
 .movie-summary a:hover,
-.genre a:hover{
+.genre a:hover,
+.edit-movie-button a:hover {
     color: hsl(45, 50%, 51%);
+    border-color: hsl(45, 50%, 51%);
 }
 
 .movie-list-item,
